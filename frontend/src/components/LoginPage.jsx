@@ -92,6 +92,11 @@ const LoginPage = () => {
           <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
             Login
           </button>
+          <div className="mt-4 text-sm">
+            <Link to="/faculty/forgot-password" className="text-blue-600 hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
         </form>
 
         {/* Admin Login */}
@@ -116,6 +121,11 @@ const LoginPage = () => {
           <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
             Login
           </button>
+          <div className="mt-4 text-sm">
+            <Link to="/admin/forgot-password" className="text-green-600 hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
         </form>
       </div>
     </div>
@@ -123,3 +133,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+

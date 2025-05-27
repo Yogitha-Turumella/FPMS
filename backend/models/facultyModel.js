@@ -45,7 +45,7 @@ const submitAdminScores = async (faculty_id, year, scored_by, scoreData) => {
   await pool.query(query, [faculty_id, year, scored_by, ...values]);
 };
 
-// ✅ Get faculty by login_id (for login authentication)
+// Get faculty by login_id (for login authentication)
 const getFacultyById = async (login_id) => {
   const result = await pool.query(
     "SELECT * FROM faculty_users WHERE login_id = $1",
@@ -54,10 +54,29 @@ const getFacultyById = async (login_id) => {
   return result.rows[0];
 };
 
+// Verify that a login_id and security code match
+const verifySecurityCode = async (login_id, security_code) => {
+  const result = await pool.query(
+    "SELECT * FROM faculty_users WHERE login_id = $1 AND security_code = $2",
+    [login_id, security_code]
+  );
+  return result.rows[0];
+};
+
+// Update the faculty password
+const updateFacultyPassword = async (login_id, hashedPassword) => {
+  await pool.query(
+    "UPDATE faculty_users SET password_hash = $1 WHERE login_id = $2",
+    [hashedPassword, login_id]
+  );
+};
+
 module.exports = {
   upsertProofSubmission,
   getFacultySubmission,
   getAllSubmittedFaculty,
   submitAdminScores,
-  getFacultyById, // make sure to export the new function
+  getFacultyById,
+  verifySecurityCode,
+  updateFacultyPassword,
 };
