@@ -55,7 +55,7 @@ const getFacultyById = async (login_id) => {
 };
 
 // Verify that a login_id and security code match
-const verifySecurityCode = async (login_id, security_code) => {
+const findFacultyByIdAndCode = async (login_id, security_code) => {
   const result = await pool.query(
     "SELECT * FROM faculty_users WHERE login_id = $1 AND security_code = $2",
     [login_id, security_code]
@@ -77,6 +77,6 @@ module.exports = {
   getAllSubmittedFaculty,
   submitAdminScores,
   getFacultyById,
-  verifySecurityCode,
+  findFacultyByIdAndCode,
   updateFacultyPassword,
 };

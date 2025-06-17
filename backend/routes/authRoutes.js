@@ -4,16 +4,19 @@ const {
   loginFaculty,
   loginAdmin,
   resetFacultyPassword,
-  resetAdminPassword, // ✅ Admin reset handler
+  resetAdminPassword,
 } = require("../controllers/authController");
 
+// Faculty login
 router.post("/faculty/login", loginFaculty);
+
+// Admin login
 router.post("/admin/login", loginAdmin);
 
-// ✅ Route for faculty password reset
+// Faculty password reset
 router.post("/faculty/reset-password", resetFacultyPassword);
 
-// ✅ Route for admin password reset (now enabled)
+// Admin password reset
 router.post("/admin/reset-password", resetAdminPassword);
 
 module.exports = router;
